@@ -128,7 +128,6 @@ function FormData() {
       <div className="flex justify-between mb-1">
         <span className="text-lg">Age</span>
         <span className="text-lg">Number of Children</span>
-        // map childrens
       </div>
       {childrenArr.map((val, i) => (
         <div key={i} className="flex justify-between mb-1">
