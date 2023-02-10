@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/room-price-calculator/static/css/main.1c25ee32.css",
+    "main.js": "/room-price-calculator/static/js/main.10222e50.js",
+    "static/js/787.790a1eca.chunk.js": "/room-price-calculator/static/js/787.790a1eca.chunk.js",
+    "index.html": "/room-price-calculator/index.html",
+    "main.1c25ee32.css.map": "/room-price-calculator/static/css/main.1c25ee32.css.map",
+    "main.10222e50.js.map": "/room-price-calculator/static/js/main.10222e50.js.map",
+    "787.790a1eca.chunk.js.map": "/room-price-calculator/static/js/787.790a1eca.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.1c25ee32.css",
+    "static/js/main.10222e50.js"
+  ]
+}
