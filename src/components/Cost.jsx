@@ -1,6 +1,57 @@
-import React from "react";
+import React, { useContext, useEffect, useState } from "react";
+import { InputContext } from "../context/InputContext.js";
 
-function Cost({ adultCost, childrenCost }) {
+function Cost() {
+  const { adults, room, childrenArr } = useContext(InputContext);
+
+  const [adultCost, setAdultCost] = useState(0);
+  const [childrenCost, setChildrenCost] = useState(0);
+
+  const AdultCost = (room, adults) => {
+    setAdultCost(adults * 2);
+    if (room === "1") {
+      setAdultCost(adults * 5);
+    } else if (room === "2") {
+      setAdultCost(adults * 8);
+    }
+  };
+
+  const ChildrenCost = (room, childrenArr, childrenCost) => {
+    setChildrenCost(0);
+
+    childrenArr.forEach((child) => {
+      if (child.age >= 0 && child.age <= 5) {
+        setChildrenCost((a) => a + child.numOfChildren * 3);
+      } else if (child.age <= 12) {
+        setChildrenCost((a) => a + child.numOfChildren * 4);
+      }
+    });
+
+    if (room === "1") {
+      setChildrenCost(0);
+      childrenArr.forEach((child) => {
+        if (child.age >= 0 && child.age <= 5) {
+          setChildrenCost((a) => a + child.numOfChildren * 6);
+        } else if (child.age <= 12) {
+          setChildrenCost((a) => a + child.numOfChildren * 7);
+        }
+      });
+    } else if (room === "2") {
+      setChildrenCost(0);
+      childrenArr.forEach((child) => {
+        if (child.age >= 0 && child.age <= 5) {
+          setChildrenCost((a) => a + child.numOfChildren * 9);
+        } else if (child.age <= 12) {
+          setChildrenCost((a) => a + child.numOfChildren * 10);
+        }
+      });
+    }
+  };
+  useEffect(() => {
+    AdultCost(room, adults);
+    ChildrenCost(room, childrenArr);
+  }, [room, adults, childrenArr]);
+
   return (
     <div className="">
       <div className="px-6 py-4">
