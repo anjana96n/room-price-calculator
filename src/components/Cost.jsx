@@ -8,11 +8,11 @@ function Cost() {
   const [childrenCost, setChildrenCost] = useState(0);
 
   const AdultCost = (room, adults) => {
-    setAdultCost(adults * 2);
+    setAdultCost(adults * 30000);
     if (room === "1") {
-      setAdultCost(adults * 5);
+      setAdultCost(adults * 40000);
     } else if (room === "2") {
-      setAdultCost(adults * 8);
+      setAdultCost(adults * 50000);
     }
   };
 
@@ -20,10 +20,13 @@ function Cost() {
     setChildrenCost(0);
 
     childrenArr.forEach((child) => {
+      if (child.age <= 0 && child.age >= 12) {
+        alert("Invalid Age for children");
+      }
       if (child.age >= 0 && child.age <= 5) {
-        setChildrenCost((a) => a + child.numOfChildren * 3);
+        setChildrenCost((a) => a + child.numOfChildren * 5000);
       } else if (child.age <= 12) {
-        setChildrenCost((a) => a + child.numOfChildren * 4);
+        setChildrenCost((a) => a + child.numOfChildren * 20000);
       }
     });
 
@@ -31,18 +34,18 @@ function Cost() {
       setChildrenCost(0);
       childrenArr.forEach((child) => {
         if (child.age >= 0 && child.age <= 5) {
-          setChildrenCost((a) => a + child.numOfChildren * 6);
+          setChildrenCost((a) => a + child.numOfChildren * 5000);
         } else if (child.age <= 12) {
-          setChildrenCost((a) => a + child.numOfChildren * 7);
+          setChildrenCost((a) => a + child.numOfChildren * 20000);
         }
       });
     } else if (room === "2") {
       setChildrenCost(0);
       childrenArr.forEach((child) => {
         if (child.age >= 0 && child.age <= 5) {
-          setChildrenCost((a) => a + child.numOfChildren * 9);
+          setChildrenCost((a) => a + child.numOfChildren * 10000);
         } else if (child.age <= 12) {
-          setChildrenCost((a) => a + child.numOfChildren * 10);
+          setChildrenCost((a) => a + child.numOfChildren * 30000);
         }
       });
     }

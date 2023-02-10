@@ -2,13 +2,6 @@ import React, { useContext } from "react";
 import { InputContext } from "../context/InputContext.js";
 
 function FormData() {
-  // const [age, setAge] = useState("");
-  // const [numOfChildren, setNumOfChildren] = useState("");
-  // const [adults, setAdults] = useState("");
-  // const [room, setRoom] = useState("");
-
-  // const [childrenArr, setChildrenArr] = useState([]);
-
   const {
     age,
     setAge,
@@ -26,7 +19,7 @@ function FormData() {
     console.log(value);
     alert(value);
   };
-
+  //Add child
   const addChild = () => {
     if (age.length === 0 || numOfChildren.length === 0) {
       alert("Fill both age and number of children");
@@ -77,29 +70,37 @@ function FormData() {
           type="number"
           min="0"
           value={adults}
-          onChange={(e) => setAdults(e.target.value)}
+          // only positive value
+          onChange={(e) => {
+            const value = e.target.value === "" ? "" : parseInt(e.target.value);
+            if (value === "" || value >= 0) {
+              setAdults(value);
+            }
+          }}
           placeholder="No of Adults"
           className="peer form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
         />
-        {/* <p className="text-sm invisible peer-invalid:visible text-red-500 font-light">
-          Please enter a valid email address
-        </p> */}
       </div>
       <div className="flex gap-10">
         <div className="">
           <input
             name="age"
-            required
             type="number"
             min="0"
+            max="12"
             placeholder="Age"
             value={age}
-            onChange={(e) => setAge(e.target.value)}
+            //Only value between 0-12
+            onChange={(e) => {
+              const value =
+                e.target.value === "" ? "" : parseInt(e.target.value);
+              if (value === "" || (value >= 0 && value <= 12)) {
+                setAge(value);
+              }
+            }}
+            //onChange={(e) => setAge(e.target.value)}
             className="peer form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
           />
-          {/* <p className="text-sm invisible peer-invalid:visible text-red-500 font-light">
-            Please enter a valid email address
-          </p> */}
         </div>
         <div className="">
           <input
@@ -109,12 +110,16 @@ function FormData() {
             min="0"
             placeholder="No of Children"
             value={numOfChildren}
-            onChange={(e) => setNumOfChildren(e.target.value)}
+            //only positive
+            onChange={(e) => {
+              const value =
+                e.target.value === "" ? "" : parseInt(e.target.value);
+              if (value === "" || value >= 0) {
+                setNumOfChildren(value);
+              }
+            }}
             className="peer form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
           />
-          {/* <p className="text-sm invisible peer-invalid:visible text-red-500 font-light">
-            Please enter a valid email address
-          </p> */}
         </div>
       </div>
       <button onClick={addChild} className="text-blue-500 text-sm">
@@ -123,6 +128,7 @@ function FormData() {
       <div className="flex justify-between mb-1">
         <span className="text-lg">Age</span>
         <span className="text-lg">Number of Children</span>
+        // map childrens
       </div>
       {childrenArr.map((val, i) => (
         <div key={i} className="flex justify-between mb-1">
